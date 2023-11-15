@@ -42,6 +42,8 @@
 
     <properties>
         <sourceReleaseAssemblyDescriptor>source-release-zip-tar</sourceReleaseAssemblyDescriptor>
+        <failsafe.rerunFailingTestsCount>2</failsafe.rerunFailingTestsCount>
+        <surefire.rerunFailingTestsCount>2</surefire.rerunFailingTestsCount>    
     </properties>
 
     <build>
