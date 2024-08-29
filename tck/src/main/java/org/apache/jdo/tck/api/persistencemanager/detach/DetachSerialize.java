@@ -16,6 +16,7 @@
  */
 package org.apache.jdo.tck.api.persistencemanager.detach;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
@@ -78,6 +79,7 @@ public class DetachSerialize extends DetachTest {
     try {
       ByteArrayInputStream bais = new ByteArrayInputStream(stream);
       ObjectInputStream ois = new ObjectInputStream(bais);
+      ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
       return ois.readObject();
     } catch (Exception ex) {
       fail(ASSERTION_FAILED + "deserializing cart:" + ex);

@@ -17,6 +17,7 @@
 
 package org.apache.jdo.tck.util;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -120,6 +121,7 @@ public class ResultSummary implements Serializable {
     String fileName = directory + File.separator + FILE_NAME_OF_RESULT_SUMMARY;
     try {
       try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+        ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
         result = (ResultSummary) ois.readObject();
       }
     } catch (FileNotFoundException e) {
