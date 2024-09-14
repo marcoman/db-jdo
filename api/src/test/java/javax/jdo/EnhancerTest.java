@@ -17,6 +17,7 @@
 
 package javax.jdo;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -289,8 +290,7 @@ class EnhancerTest extends AbstractTest {
     String enhancerJar = "target/" + uuid + "/enhancer-test.jar";
     String enhancerJarPathname = BASEDIR + "/" + enhancerJar;
     Process create =
-        Runtime.getRuntime()
-            .exec("jar -cf " + enhancerJarPathname + " -C " + BASEDIR + "/target/classes .");
+        SystemCommand.runCommand(Runtime.getRuntime(), "jar -cf " + enhancerJarPathname + " -C " + BASEDIR + "/target/classes .");
     int returnCode = create.waitFor();
     Assertions.assertEquals(0, returnCode, "jar command returned wrong return code.");
     // find the jdo.jar in target
