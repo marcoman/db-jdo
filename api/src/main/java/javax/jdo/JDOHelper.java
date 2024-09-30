@@ -22,6 +22,7 @@
 
 package javax.jdo;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -742,7 +743,7 @@ public class JDOHelper implements Constants {
     BufferedReader reader = new BufferedReader(new InputStreamReader(is));
     String line = null;
     try {
-      while ((line = reader.readLine()) != null) {
+      while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
         line = line.trim();
         if (line.length() == 0 || line.startsWith("#")) {
           continue;

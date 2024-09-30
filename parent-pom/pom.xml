@@ -166,7 +166,8 @@
         <project.build.outputTimestamp>1661453031</project.build.outputTimestamp>
         <showWarnings></showWarnings>
         <compilerArgument></compilerArgument>
-    </properties>
+  <versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
+ </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -262,7 +263,12 @@
                 <artifactId>glassfish-corba-omgapi</artifactId>
                 <version>4.2.4</version>
             </dependency>
-        </dependencies>
+   <dependency>
+    <groupId>io.github.pixee</groupId>
+    <artifactId>java-security-toolkit</artifactId>
+    <version>${versions.java-security-toolkit}</version>
+   </dependency>
+  </dependencies>
     </dependencyManagement>
 
     <build>
