@@ -165,7 +165,7 @@ public class ClassGenerator {
             // for fields that cannot be persisted
 
             if ((fieldModifier.indexOf("static") >= 0 || fieldModifier.indexOf("final") >= 0)
-                && !xmlPersistenceModifier.equals("")) continue;
+                && !"".equals(xmlPersistenceModifier)) continue;
 
             /*        original code
                      if(!isPersistenceCapable(fieldModifiers[k])
@@ -185,7 +185,7 @@ public class ClassGenerator {
                       || (fieldModifier.indexOf("transient") >= 0
                           && xmlPersistenceModifier.indexOf("persistent") == -1));
 
-              if (!xmlEmbeddedModifier.equals("") && !fieldIsPersistent) continue;
+              if (!"".equals(xmlEmbeddedModifier) && !fieldIsPersistent) continue;
 
               StringBuffer sb = new StringBuffer();
               sb.append(twoSpaces);
@@ -195,7 +195,7 @@ public class ClassGenerator {
               sb.append(space);
               String fieldName = (fieldType + fieldCounter++);
               // temporary fix to get around the bug in the enhancer code
-              if (!(xmlEmbeddedModifier.equals("") && xmlPersistenceModifier.equals(""))) {
+              if (!("".equals(xmlEmbeddedModifier) && "".equals(xmlPersistenceModifier))) {
                 printXmlField(
                     xmlPw,
                     "name=\""
@@ -322,7 +322,7 @@ public class ClassGenerator {
       PrintWriter pw, String fieldName, String elementType, String embeddedValue) {
     pw.println("<field name=\"" + fieldName + "\" " + ">");
     pw.print("<collection element-type=" + "\"" + elementType + "\"");
-    if (!embeddedValue.equals("")) pw.print(" embedded-element=" + "\"" + embeddedValue + "\"");
+    if (!"".equals(embeddedValue)) pw.print(" embedded-element=" + "\"" + embeddedValue + "\"");
     pw.println(">");
     pw.println("</collection>");
     pw.println("</field>");
@@ -345,50 +345,50 @@ public class ClassGenerator {
       String embeddedValue) {
     pw.println("<field name=\"" + fieldName + "\" " + ">");
     pw.print("<map ");
-    if (!keyType.equals("")) pw.print(" key-type=" + "\"" + keyType + "\"");
-    if (!embeddedKey.equals("")) pw.print(" embedded-key=" + "\"" + embeddedKey + "\"");
-    if (!valueType.equals("")) pw.print(" value-type=" + "\"" + valueType + "\"");
-    if (!embeddedValue.equals("")) pw.print(" embedded-value=" + "\"" + embeddedValue + "\"");
+    if (!"".equals(keyType)) pw.print(" key-type=" + "\"" + keyType + "\"");
+    if (!"".equals(embeddedKey)) pw.print(" embedded-key=" + "\"" + embeddedKey + "\"");
+    if (!"".equals(valueType)) pw.print(" value-type=" + "\"" + valueType + "\"");
+    if (!"".equals(embeddedValue)) pw.print(" embedded-value=" + "\"" + embeddedValue + "\"");
     pw.println(">");
     pw.println("</map>");
     pw.println("</field>");
   }
 
   private String getInitializerForFinalTypes(String fieldType) throws Exception {
-    if (fieldType.equals("char")) return " = 'a'"; // primitive character, return 'a';
-    else if (fieldType.equals("boolean")) return " = false"; // primitive boolean, return 'a';
+    if ("char".equals(fieldType)) return " = 'a'"; // primitive character, return 'a';
+    else if ("boolean".equals(fieldType)) return " = false"; // primitive boolean, return 'a';
     else if (Character.isLowerCase(fieldType.charAt(0)))
       return " = 5"; // return 0 for all other primitive types
-    else if (fieldType.equals("Byte")) return " = Byte.valueOf((byte)5)";
-    else if (fieldType.equals("Boolean")) return " = Boolean.FALSE";
-    else if (fieldType.equals("Character")) return " = Character.valueOf('a')";
-    else if (fieldType.equals("Short")) return " = Short.valueOf((short)5)";
-    else if (fieldType.equals("Integer")) return " = Integer.valueOf((int)5)";
-    else if (fieldType.equals("Long")) return " = Long.valueOf((long)5)";
-    else if (fieldType.equals("Float")) return " = Float.valueOf((float)5)";
-    else if (fieldType.equals("Double")) return " = Double.valueOf((double)5)";
-    else if (fieldType.equals("String")) return " = new String(\"JDO TCK\")";
-    else if (fieldType.equals("Locale")) return " = Locale.US";
-    else if (fieldType.equals("BigDecimal")) return " = new BigDecimal(100.15)";
-    else if (fieldType.equals("BigInteger")) return " = new BigInteger(\"100\")";
-    else if (fieldType.equals("Collection")) return " = new HashSet()";
-    else if (fieldType.equals("Set")) return " = new HashSet()";
-    else if (fieldType.equals("HashSet")) return " = new HashSet()";
-    else if (fieldType.equals("Object")) return " = new Object()";
-    else if (fieldType.equals("SimpleClass")) return " = new SimpleClass()";
-    else if (fieldType.equals("SimpleInterface")) return " = new SimpleClass()";
-    else if (fieldType.equals("Date")) return " = new Date()";
+    else if ("Byte".equals(fieldType)) return " = Byte.valueOf((byte)5)";
+    else if ("Boolean".equals(fieldType)) return " = Boolean.FALSE";
+    else if ("Character".equals(fieldType)) return " = Character.valueOf('a')";
+    else if ("Short".equals(fieldType)) return " = Short.valueOf((short)5)";
+    else if ("Integer".equals(fieldType)) return " = Integer.valueOf((int)5)";
+    else if ("Long".equals(fieldType)) return " = Long.valueOf((long)5)";
+    else if ("Float".equals(fieldType)) return " = Float.valueOf((float)5)";
+    else if ("Double".equals(fieldType)) return " = Double.valueOf((double)5)";
+    else if ("String".equals(fieldType)) return " = new String(\"JDO TCK\")";
+    else if ("Locale".equals(fieldType)) return " = Locale.US";
+    else if ("BigDecimal".equals(fieldType)) return " = new BigDecimal(100.15)";
+    else if ("BigInteger".equals(fieldType)) return " = new BigInteger(\"100\")";
+    else if ("Collection".equals(fieldType)) return " = new HashSet()";
+    else if ("Set".equals(fieldType)) return " = new HashSet()";
+    else if ("HashSet".equals(fieldType)) return " = new HashSet()";
+    else if ("Object".equals(fieldType)) return " = new Object()";
+    else if ("SimpleClass".equals(fieldType)) return " = new SimpleClass()";
+    else if ("SimpleInterface".equals(fieldType)) return " = new SimpleClass()";
+    else if ("Date".equals(fieldType)) return " = new Date()";
     else throw new Exception("Unsupported FieldType " + fieldType);
   }
 
   private String getImportStatements(String fieldType) {
-    if (fieldType.equals("FieldsOfLocale")) return "import java.util.*;";
-    if (fieldType.equals("FieldsOfDate")) return "import java.util.*;";
-    else if (fieldType.equals("FieldsOfBigDecimal")) return "import java.math.*;";
-    else if (fieldType.equals("FieldsOfBigInteger")) return "import java.math.*;";
-    else if (fieldType.equals("FieldsOfCollection")) return "import java.util.*;";
-    else if (fieldType.equals("FieldsOfSet")) return "import java.util.*;";
-    else if (fieldType.equals("FieldsOfHashSet")) return "import java.util.*;";
+    if ("FieldsOfLocale".equals(fieldType)) return "import java.util.*;";
+    if ("FieldsOfDate".equals(fieldType)) return "import java.util.*;";
+    else if ("FieldsOfBigDecimal".equals(fieldType)) return "import java.math.*;";
+    else if ("FieldsOfBigInteger".equals(fieldType)) return "import java.math.*;";
+    else if ("FieldsOfCollection".equals(fieldType)) return "import java.util.*;";
+    else if ("FieldsOfSet".equals(fieldType)) return "import java.util.*;";
+    else if ("FieldsOfHashSet".equals(fieldType)) return "import java.util.*;";
     else if (fieldType.indexOf("Collections") >= 0)
       return "import java.util.*;\r\nimport java.math.*;";
     else return "";
@@ -670,7 +670,7 @@ public class ClassGenerator {
     };
     for (String collectionType : collectionTypes) {
       // Map has a lot of combinations, generate it separately
-      if (collectionType.indexOf("Map") >= 0 || collectionType.equals("Hashtable")) {
+      if (collectionType.indexOf("Map") >= 0 || "Hashtable".equals(collectionType)) {
         generateMapCollection(collectionType);
       } else // Array and the other collections
       {
@@ -696,10 +696,10 @@ public class ClassGenerator {
         int fieldCounter = 0;
         String[] fieldNames = new String[elementTypes.length * embeddedElements.length];
         for (int j = 0; j < elementTypes.length; j++) {
-          if (elementTypes[j].equals("Locale") && collectionType.equals("TreeSet")) continue;
+          if ("Locale".equals(elementTypes[j]) && "TreeSet".equals(collectionType)) continue;
           for (int k = 0; k < embeddedElements.length; k++) {
-            if (collectionType.equals("Array")) {
-              if (!embeddedElements[k].equals("")) {
+            if ("Array".equals(collectionType)) {
+              if (!"".equals(embeddedElements[k])) {
                 fieldNames[fieldCounter] = collectionType + "Of" + elementTypes[j] + fieldCounter;
                 //                pw.println("  public " + "Object [] "+ fieldNames[fieldCounter]
                 // +";");
@@ -752,10 +752,10 @@ public class ClassGenerator {
         writeMethodGetLength(pw);
         writeMethodGet(
             pw,
-            collectionType.equals("Array") ? "Object [] " : collectionType,
+            "Array".equals(collectionType) ? "Object [] " : collectionType,
             fieldNames,
             fieldCounter);
-        if (collectionType.equals("Array"))
+        if ("Array".equals(collectionType))
           writeMethodSetForArray(pw, "Object [] ", fieldNames, fieldCounter);
         else writeMethodSet(pw, collectionType, fieldNames, fieldCounter);
 
@@ -881,10 +881,10 @@ public class ClassGenerator {
       for (int j = 0; j < embeddedKeys.length; j++) {
         for (String valueType : valueTypes) {
           for (int l = 0; l < embeddedValues.length; l++) {
-            if (keyType.equals("")
-                && embeddedKeys[j].equals("")
-                && valueType.equals("")
-                && embeddedValues[l].equals("")) continue;
+            if ("".equals(keyType)
+                && "".equals(embeddedKeys[j])
+                && "".equals(valueType)
+                && "".equals(embeddedValues[l])) continue;
             fieldNames[fieldCounter] = mapName + "Of" + keyType + "_" + valueType + fieldCounter;
             pw.println("  public " + mapName + " " + fieldNames[fieldCounter] + ";");
             printXmlMapField(

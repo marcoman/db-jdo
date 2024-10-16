@@ -189,7 +189,7 @@ public class AccessingFieldsInPredelete extends TestParts {
       } else {
         if (childB.name == null) if (debug) logger.debug("childB.name is null");
       }
-      if (!childB.name.equals("childB")) {
+      if (!"childB".equals(childB.name)) {
         fail(
             ASSERTION_FAILED,
             "childB.name should be \"childB\".  Instead its value is \"" + childB.name + "\".");

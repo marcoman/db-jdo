@@ -145,9 +145,9 @@ public class TestHashtableStringKeyCollections extends JDO_Test {
                 + actual.size()
                 + " . ");
       } else if (!expected.equals(actual)) {
-        if (TestUtil.getFieldSpecsForMap(HashtableStringKeyCollections.fieldSpecs[i])
-            .get(1)
-            .equals("BigDecimal")) {
+        if ("BigDecimal"
+            .equals(TestUtil.getFieldSpecsForMap(HashtableStringKeyCollections.fieldSpecs[i])
+            .get(1))) {
           Set<?> keys = expected.keySet();
           for (Object nextKey : keys) {
             BigDecimal expectedMapValue = (BigDecimal) expected.get(nextKey);

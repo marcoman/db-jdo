@@ -313,7 +313,7 @@ public class RunTCK extends AbstractTCKMojo {
    * @throws MojoExecutionException
    */
   private List<String> initTCKRun() throws MojoExecutionException {
-    if (impl.equals("iut")) {
+    if ("iut".equals(impl)) {
       pmfProperties = "iut-pmf.properties";
     }
 
@@ -512,7 +512,7 @@ public class RunTCK extends AbstractTCKMojo {
    * @return
    */
   private String getLogFilePrefix(String logDir, String idtype, String cfg) {
-    String idname = idtype.trim().equals("applicationidentity") ? "app" : "dsid";
+    String idname = "applicationidentity".equals(idtype.trim()) ? "app" : "dsid";
     String configName = cfg.indexOf('.') > 0 ? cfg.substring(0, cfg.indexOf('.')) : cfg;
     return logDir + FS + idname + "-" + configName + "-";
   }
@@ -709,7 +709,7 @@ public class RunTCK extends AbstractTCKMojo {
   }
 
   private boolean disableColors() {
-    return !this.testRunnerColors.equalsIgnoreCase("enable");
+    return !"enable".equalsIgnoreCase(this.testRunnerColors);
   }
 
   private String getDatastoreSupportsQueryCancelOption() {
@@ -721,7 +721,7 @@ public class RunTCK extends AbstractTCKMojo {
         support = false;
       }
     } else {
-      support = datastoreSupportsQueryCancel.equalsIgnoreCase("true");
+      support = "true".equalsIgnoreCase(datastoreSupportsQueryCancel);
     }
     return "-Djdo.tck.datastore.supportsQueryCancel=" + support;
   }

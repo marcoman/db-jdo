@@ -250,7 +250,7 @@ public class MakeNontransactionalDirtyInstance extends PersistenceManagerTest {
     obj.setX(i);
     int curr = currentState(obj);
 
-    if (state.equals("persistent")) {
+    if ("persistent".equals(state)) {
       if (curr != PERSISTENT_DIRTY) {
         fail(
             ASSERTION_FAILED,
@@ -261,7 +261,7 @@ public class MakeNontransactionalDirtyInstance extends PersistenceManagerTest {
                 + curr);
         return false;
       }
-    } else if (state.equals("transient")) {
+    } else if ("transient".equals(state)) {
       if (curr != TRANSIENT_DIRTY) {
         fail(
             ASSERTION_FAILED,

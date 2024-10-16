@@ -41,9 +41,9 @@ public class PMFProxy implements InvocationHandler {
   public Object invoke(Object proxy, Method m, Object[] args) throws Exception {
     Object result = null;
 
-    if (m.getName().equals("getConnectionDriverName")) {
+    if ("getConnectionDriverName".equals(m.getName())) {
       result = connectionDriverName;
-    } else if (m.getName().equals("setConnectionDriverName")) {
+    } else if ("setConnectionDriverName".equals(m.getName())) {
       connectionDriverName = (String) args[0];
     } else {
       throw new Exception("Unexpected invocation of method: " + m);

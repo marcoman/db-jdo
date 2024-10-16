@@ -61,7 +61,7 @@ public class QueryCancel extends QueryTest {
   private static final int NO_OF_INSTANCES = 5000;
 
   protected static final boolean DATASTORE_SUPPORTS_QUERY_CANCEL =
-      System.getProperty("jdo.tck.datastore.supportsQueryCancel", "true").equalsIgnoreCase("true");
+      "true".equalsIgnoreCase(System.getProperty("jdo.tck.datastore.supportsQueryCancel", "true"));
 
   /** */
   private static final String ASSERTION_FAILED = "Assertion A14.6.1-8 (QueryCancel) failed: ";

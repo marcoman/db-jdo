@@ -135,7 +135,7 @@ public class TestHashSetCollections extends JDO_Test {
                 + actual.size()
                 + " . ");
       } else if (!expected.equals(actual)) {
-        if (TestUtil.getFieldSpecs(HashSetCollections.fieldSpecs[i]).equals("BigDecimal")) {
+        if ("BigDecimal".equals(TestUtil.getFieldSpecs(HashSetCollections.fieldSpecs[i]))) {
           // sort values for comparison
           TreeSet<?> expectedTS = new TreeSet<>(expected);
           TreeSet<?> actualTS = new TreeSet<>(actual);

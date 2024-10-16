@@ -1524,7 +1524,7 @@ public class SignatureVerifier {
         // parse dot-connected identifiers
         final StringBuilder id = new StringBuilder(t);
         String tt = parseToken();
-        while (tt.equals(".")) {
+        while (".".equals(tt)) {
           id.append(".");
           tt = parseIdentifier();
           if (tt == null) {
@@ -1566,7 +1566,7 @@ public class SignatureVerifier {
       final List<String> ids = new ArrayList<>();
       ids.add(demandIdentifier());
       String t;
-      while ((t = parseToken()).equals(",")) {
+      while (",".equals((t = parseToken()))) {
         ids.add(demandIdentifier());
       }
       setLookAhead(t); // not an identifier
@@ -1585,7 +1585,7 @@ public class SignatureVerifier {
       if (t != null) {
         // parse array dimensions
         final StringBuilder type = new StringBuilder(t);
-        while ((t = parseToken()).equals("[")) {
+        while ("[".equals((t = parseToken()))) {
           demandToken("]");
           type.append("[]");
         }
@@ -1624,7 +1624,7 @@ public class SignatureVerifier {
       if (t != null) {
         types.add(t);
         parseIdentifier(); // optional parameter name
-        while ((t = parseToken()).equals(",")) {
+        while (",".equals((t = parseToken()))) {
           types.add(demandType());
           parseIdentifier(); // optional parameter name
         }
@@ -1733,7 +1733,7 @@ public class SignatureVerifier {
       }
       final int mods = parseModifiers();
       final String tc = parseToken();
-      if (!tc.equals("class")) { // token 'interface' parsed as modifier
+      if (!"class".equals(tc)) { // token 'interface' parsed as modifier
         setLookAhead(tc);
       }
       final String name = demandIdentifier();
@@ -1743,19 +1743,19 @@ public class SignatureVerifier {
       final String[] impl;
       {
         String tei = parseToken();
-        if (tei.equals("extends")) {
+        if ("extends".equals(tei)) {
           ext = demandIdentifierList();
           tei = parseToken();
         } else {
           ext = new String[] {};
         }
-        if (((mods & Modifier.INTERFACE) == 0) && tei.equals("implements")) {
+        if (((mods & Modifier.INTERFACE) == 0) && "implements".equals(tei)) {
           impl = demandIdentifierList();
           tei = parseToken();
         } else {
           impl = new String[] {};
         }
-        if (!tei.equals("{")) {
+        if (!"{".equals(tei)) {
           throw new ParseException(msgUnexpectedToken(tei), 0);
         }
       }
@@ -1849,14 +1849,14 @@ public class SignatureVerifier {
       if (arg == null) {
         continue;
       }
-      if (arg.equalsIgnoreCase("-h") || arg.equalsIgnoreCase("--help")) {
+      if ("-h".equalsIgnoreCase(arg) || "--help".equalsIgnoreCase(arg)) {
         return -1;
       }
-      if (arg.equalsIgnoreCase("-v") || arg.equalsIgnoreCase("--verbose")) {
+      if ("-v".equalsIgnoreCase(arg) || "--verbose".equalsIgnoreCase(arg)) {
         optionVerbose = true;
         continue;
       }
-      if (arg.equalsIgnoreCase("-q") || arg.equalsIgnoreCase("--quiet")) {
+      if ("-q".equalsIgnoreCase(arg) || "--quiet".equalsIgnoreCase(arg)) {
         optionQuiet = true;
         continue;
       }

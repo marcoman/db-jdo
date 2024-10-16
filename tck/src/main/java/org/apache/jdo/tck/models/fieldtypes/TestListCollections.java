@@ -144,7 +144,7 @@ public class TestListCollections extends JDO_Test {
                 + actual.size()
                 + " . ");
       } else if (!expected.equals(actual)) {
-        if (TestUtil.getFieldSpecs(ListCollections.fieldSpecs[i]).equals("BigDecimal")) {
+        if ("BigDecimal".equals(TestUtil.getFieldSpecs(ListCollections.fieldSpecs[i]))) {
           ListIterator<?> expectedIt = expected.listIterator();
           ListIterator<?> actualIt = actual.listIterator();
           int index = 0;

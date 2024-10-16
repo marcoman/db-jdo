@@ -189,11 +189,11 @@ public abstract class JDO_Test {
    * up data from database. The default value is true.
    */
   protected static final boolean CLEANUP_DATA =
-      System.getProperty("jdo.tck.cleanupaftertest", "true").equalsIgnoreCase("true");
+      "true".equalsIgnoreCase(System.getProperty("jdo.tck.cleanupaftertest", "true"));
 
   /** Flag indicating whether to close the PMF after each test or not. It defaults to false. */
   protected static final boolean CLOSE_PMF_AFTER_EACH_TEST =
-      System.getProperty("jdo.tck.closePMFAfterEachTest", "false").equalsIgnoreCase("true");
+      "true".equalsIgnoreCase(System.getProperty("jdo.tck.closePMFAfterEachTest", "false"));
 
   /** The Properties object for the PersistenceManagerFactory. */
   protected static Properties PMFPropertiesObject;
@@ -1199,7 +1199,7 @@ public abstract class JDO_Test {
     while (tokenizer.hasMoreTokens()) {
       String requiredOption = tokenizer.nextToken();
       logger.debug("Required option: " + requiredOption);
-      if (!requiredOption.equals("") && !supportedOptions.contains(requiredOption)) {
+      if (!"".equals(requiredOption) && !supportedOptions.contains(requiredOption)) {
         isTestToBePerformed = false;
         printUnsupportedOptionalFeatureNotTested(getClass().getName(), requiredOption);
       }
