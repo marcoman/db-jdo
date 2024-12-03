@@ -22,6 +22,7 @@
 
 package javax.jdo.identity;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
@@ -84,6 +85,7 @@ class SingleFieldIdentityTest extends AbstractTest {
       byte[] ba = baos.toByteArray();
       ByteArrayInputStream bais = new ByteArrayInputStream(ba);
       ObjectInputStream ois = new ObjectInputStream(bais);
+      ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
       for (int i = 0; i < length; ++i) {
         result[i] = ois.readObject();
       }

@@ -17,6 +17,7 @@
 
 package org.apache.jdo.tck.query.jdoql;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -73,6 +74,7 @@ public class RestoredSerializedQueryInstanceLosesAssociationWithPM extends Query
       ObjectOutputStream oos = new ObjectOutputStream(baos);
       oos.writeObject(query);
       ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()));
+      ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
       query = (Query<Project>) ois.readObject();
 
       try {

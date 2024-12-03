@@ -16,6 +16,7 @@
  */
 package org.apache.jdo.tck.query.api;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -243,6 +244,7 @@ public class NewQuery extends QueryTest {
       }
 
       ObjectInputStream in = new ObjectInputStream(new FileInputStream(SERIALZED_QUERY));
+      ObjectInputFilters.enableObjectFilterIfUnprotected(in);
       Query<PCPoint> query1 = (Query<PCPoint>) in.readObject();
 
       // init and execute query
