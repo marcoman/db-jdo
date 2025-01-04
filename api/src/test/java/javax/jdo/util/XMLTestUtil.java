@@ -17,6 +17,7 @@
 
 package javax.jdo.util;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
@@ -305,7 +306,7 @@ public class XMLTestUtil {
           BufferedReader bufferedReader = new BufferedReader(new FileReader(fileUnderTest));
           ArrayList<String> tmp = new ArrayList<>();
           while (bufferedReader.ready()) {
-            tmp.add(bufferedReader.readLine());
+            tmp.add(BoundedLineReader.readLine(bufferedReader, 5_000_000));
           }
           lines = tmp.toArray(new String[tmp.size()]);
         } catch (IOException ex) {

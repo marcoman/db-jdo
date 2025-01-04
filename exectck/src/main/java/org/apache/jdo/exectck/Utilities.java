@@ -17,6 +17,7 @@
 
 package org.apache.jdo.exectck;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -96,7 +97,7 @@ public class Utilities {
       String line = null;
       StringBuilder stringBuf = new StringBuilder();
       String ls = System.getProperty("line.separator");
-      while ((line = reader.readLine()) != null) {
+      while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
         stringBuf.append(line);
         stringBuf.append(ls);
       }
