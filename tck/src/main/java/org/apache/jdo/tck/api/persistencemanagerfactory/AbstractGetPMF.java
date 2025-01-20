@@ -139,10 +139,10 @@ abstract class AbstractGetPMF extends JDO_Test {
     StringBuilder buffer = new StringBuilder();
     for (Map.Entry<Object, Object> entry : entries) {
       String key = (String) entry.getKey();
-      if (key.equals("javax.jdo.option.ConnectionPassword")) {
+      if ("javax.jdo.option.ConnectionPassword".equals(key)) {
         continue;
       }
-      if (key.equals("javax.jdo.option.ConnectionUserName")) {
+      if ("javax.jdo.option.ConnectionUserName".equals(key)) {
         continue;
       }
       String expected = (String) entry.getValue();

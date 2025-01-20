@@ -1199,7 +1199,7 @@ public abstract class JDO_Test {
     while (tokenizer.hasMoreTokens()) {
       String requiredOption = tokenizer.nextToken();
       logger.debug("Required option: " + requiredOption);
-      if (!requiredOption.equals("") && !supportedOptions.contains(requiredOption)) {
+      if (!"".equals(requiredOption) && !supportedOptions.contains(requiredOption)) {
         isTestToBePerformed = false;
         printUnsupportedOptionalFeatureNotTested(getClass().getName(), requiredOption);
       }

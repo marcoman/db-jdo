@@ -154,7 +154,7 @@ public class TestArrayCollections extends JDO_Test {
                 + " . ");
         continue;
       } else if (!Arrays.equals(expected, actual)) {
-        if (TestUtil.getFieldSpecs(ArrayCollections.fieldSpecs[i]).equals("BigDecimal")) {
+        if ("BigDecimal".equals(TestUtil.getFieldSpecs(ArrayCollections.fieldSpecs[i]))) {
           for (int j = 0; j < actual.length; ++j) {
             BigDecimal expectedBD = (BigDecimal) expected[j];
             BigDecimal actualBD = (BigDecimal) actual[j];

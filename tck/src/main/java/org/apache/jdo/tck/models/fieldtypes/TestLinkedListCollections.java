@@ -140,7 +140,7 @@ public class TestLinkedListCollections extends JDO_Test {
                 + actual.size()
                 + " . ");
       } else if (!expected.equals(actual)) {
-        if (TestUtil.getFieldSpecs(LinkedListCollections.fieldSpecs[i]).equals("BigDecimal")) {
+        if ("BigDecimal".equals(TestUtil.getFieldSpecs(LinkedListCollections.fieldSpecs[i]))) {
           ListIterator<?> expectedIT = expected.listIterator();
           ListIterator<?> actualIt = actual.listIterator();
           int index = 0;

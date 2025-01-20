@@ -141,7 +141,7 @@ public class TestVectorCollections extends JDO_Test {
           logger.debug("Persisted vector is " + actual);
           logger.debug("Expected vector is " + expected);
         }
-        if (TestUtil.getFieldSpecs(VectorCollections.fieldSpecs[i]).equals("BigDecimal")) {
+        if ("BigDecimal".equals(TestUtil.getFieldSpecs(VectorCollections.fieldSpecs[i]))) {
           for (int j = 0; j < actual.size(); j++) {
             BigDecimal bigDecActual = (BigDecimal) actual.elementAt(j);
             BigDecimal bigDecExpected = (BigDecimal) expected.elementAt(j);

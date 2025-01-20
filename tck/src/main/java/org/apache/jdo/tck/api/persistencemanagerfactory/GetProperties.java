@@ -47,7 +47,7 @@ public class GetProperties extends JDO_Test {
       String s = (String) e.nextElement();
       if (debug) logger.debug("\t" + s + ": " + p.getProperty(s));
 
-      if (s.equals("VendorName") || s.equals("VersionNumber")) {
+      if ("VendorName".equals(s) || "VersionNumber".equals(s)) {
         foundStandardProperties++;
       }
     }

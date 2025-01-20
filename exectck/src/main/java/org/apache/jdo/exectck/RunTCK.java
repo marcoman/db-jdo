@@ -313,7 +313,7 @@ public class RunTCK extends AbstractTCKMojo {
    * @throws MojoExecutionException
    */
   private List<String> initTCKRun() throws MojoExecutionException {
-    if (impl.equals("iut")) {
+    if ("iut".equals(impl)) {
       pmfProperties = "iut-pmf.properties";
     }
 
@@ -512,7 +512,7 @@ public class RunTCK extends AbstractTCKMojo {
    * @return
    */
   private String getLogFilePrefix(String logDir, String idtype, String cfg) {
-    String idname = idtype.trim().equals("applicationidentity") ? "app" : "dsid";
+    String idname = "applicationidentity".equals(idtype.trim()) ? "app" : "dsid";
     String configName = cfg.indexOf('.') > 0 ? cfg.substring(0, cfg.indexOf('.')) : cfg;
     return logDir + FS + idname + "-" + configName + "-";
   }
