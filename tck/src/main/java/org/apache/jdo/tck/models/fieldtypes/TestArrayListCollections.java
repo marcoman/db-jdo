@@ -145,7 +145,7 @@ public class TestArrayListCollections extends JDO_Test {
                 + " . ");
         continue;
       } else if (!expected.equals(actual)) {
-        if (TestUtil.getFieldSpecs(ArrayListCollections.fieldSpecs[i]).equals("BigDecimal")) {
+        if ("BigDecimal".equals(TestUtil.getFieldSpecs(ArrayListCollections.fieldSpecs[i]))) {
           if (debug) {
             logger.debug(
                 "Field is "

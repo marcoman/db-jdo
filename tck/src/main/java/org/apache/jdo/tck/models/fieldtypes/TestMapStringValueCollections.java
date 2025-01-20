@@ -148,9 +148,9 @@ public class TestMapStringValueCollections extends JDO_Test {
                 + actual.size()
                 + " . ");
       } else if (!expected.equals(actual)) {
-        if (TestUtil.getFieldSpecsForMap(MapStringValueCollections.fieldSpecs[i])
-            .get(0)
-            .equals("BigDecimal")) {
+        if ("BigDecimal"
+            .equals(TestUtil.getFieldSpecsForMap(MapStringValueCollections.fieldSpecs[i])
+            .get(0))) {
           Set<?> expectedKeySet = expected.keySet();
           @SuppressWarnings("rawtypes")
           Set actualKeySet = actual.keySet();

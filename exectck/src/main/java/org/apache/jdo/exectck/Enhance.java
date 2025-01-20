@@ -208,7 +208,7 @@ public class Enhance extends AbstractTCKMojo {
           File toFile = new File(enhancedDirName + File.separator + pkgName);
           toFileName = toFile.toString();
           FileUtils.copyFile(fromFile, toFile);
-        } else if (srcDir.equals("testdata")) {
+        } else if ("testdata".equals(srcDir)) {
           startIdx = fromFileName.indexOf("org" + File.separator);
           String pkgName = fromFileName.substring(startIdx);
           File toFile =
@@ -313,7 +313,7 @@ public class Enhance extends AbstractTCKMojo {
   private void moveLogs(String idType) {
     // Move log to per-test location
     String idname = "dsid";
-    if (idType.trim().equals("applicationidentity")) {
+    if ("applicationidentity".equals(idType.trim())) {
       idname = "app";
     }
     String testLogFilename =

@@ -132,7 +132,7 @@ public class TestCollectionCollections extends JDO_Test {
                 + actual.size()
                 + " . ");
       } else if (!expected.equals(actual)) {
-        if (TestUtil.getFieldSpecs(CollectionCollections.fieldSpecs[i]).equals("BigDecimal")) {
+        if ("BigDecimal".equals(TestUtil.getFieldSpecs(CollectionCollections.fieldSpecs[i]))) {
           if (debug) {
             logger.debug(
                 "Field is "
